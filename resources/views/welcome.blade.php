@@ -104,7 +104,7 @@
                             </div>
 
                             <div class="pt-3 sm:pt-5">
-                                <h2 class="text-xl font-semibold text-black dark:text-white">Mary Alabi</h2>
+                                <h2 class="text-xl font-semibold text-black dark:text-white">Laracasts</h2>
 
                                 <p class="mt-4 text-sm/relaxed">
                                     Laracast offers thousands of video tutorials on Laravel, PHP, and JavaScript
