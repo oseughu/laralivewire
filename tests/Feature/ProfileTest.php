@@ -8,7 +8,7 @@ test('profile page is displayed', function () {
 
     $this->actingAs($user);
 
-    $response = $this->get('/profil');
+    $response = $this->get('/profile');
 
     $response
         ->assertOk()
