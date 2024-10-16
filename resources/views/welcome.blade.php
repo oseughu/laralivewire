@@ -13,7 +13,6 @@
 
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @laravelPWA
 </head>
 
 <body class="antialiased font-sans">
