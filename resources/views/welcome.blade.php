@@ -11,9 +11,62 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
+    <!-- PWA  -->
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <meta name="theme-color" content="#000000">
+    <!-- Chrome for Android theme color -->
+    {{-- <meta name="theme-color" content="{{ $config['theme_color'] }}">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="{{ $config['display'] == 'standalone' ? 'yes' : 'no' }}">
+    <meta name="application-name" content="{{ $config['short_name'] }}">
+    <link rel="icon" sizes="{{ data_get(end($config['icons']), 'sizes') }}"
+        href="{{ data_get(end($config['icons']), 'src') }}">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="{{ $config['display'] == 'standalone' ? 'yes' : 'no' }}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="{{  $config['status_bar'] }}">
+    <meta name="apple-mobile-web-app-title" content="{{ $config['short_name'] }}">
+    <link rel="apple-touch-icon" href="{{ data_get(end($config['icons']), 'src') }}">
+
+    <link href="{{ $config['splash']['640x1136'] }}"
+        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="{{ $config['splash']['750x1334'] }}"
+        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="{{ $config['splash']['1242x2208'] }}"
+        media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image" />
+    <link href="{{ $config['splash']['1125x2436'] }}"
+        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image" />
+    <link href="{{ $config['splash']['828x1792'] }}"
+        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="{{ $config['splash']['1242x2688'] }}"
+        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image" />
+    <link href="{{ $config['splash']['1536x2048'] }}"
+        media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="{{ $config['splash']['1668x2224'] }}"
+        media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="{{ $config['splash']['1668x2388'] }}"
+        media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="{{ $config['splash']['2048x2732'] }}"
+        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" /> --}}
+
+    <!-- Tile for Win8 -->
+    {{-- <meta name="msapplication-TileColor" content="{{ $config['background_color'] }}">
+    <meta name="msapplication-TileImage" content="{{ data_get(end($config['icons']), 'src') }}"> --}}
+
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @laravelPWA
 </head>
 
 <body class="antialiased font-sans">
@@ -209,6 +262,30 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ asset('/service-worker.js') }}"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+          // Register a service worker hosted at the root of the
+          // site using the default scope.
+          navigator.serviceWorker.register('/service-worker.js').then(
+          (registration) => {
+             console.log('Service worker registration succeeded:', registration);
+          },
+          (error) => {
+             console.error(`Service worker registration failed: ${error}`);
+          },
+        )
+        } else {
+         console.error('Service workers are not supported.');
+        }
+    </script>
 </body>
+
+<style>
+    html {
+        background-color: black;
+    }
+</style>
 
 </html>
