@@ -2,8 +2,8 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
-        "build": "vite build"
+        "build": "bun public/generate-manifest.js && vite build",
+        "dev": "bun public/generate-manifest.js && vite"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.9",
